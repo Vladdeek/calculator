@@ -1,7 +1,21 @@
+:root {
+	--bg-color: white;
+	--color: rgba(255, 255, 255, 0.25);
+	--text-color: black;
+	--glow-color: #2a7a76;
+	--history-color: rgba(0, 0, 0, 0.5);
+	--color1: #5ad1cd;
+	--color2: #ff6347;
+	--span-color: var(--color1);
+}
 body {
 	width: 100%;
 	height: 100%;
 	padding: 0;
+	background-color: var(--bg-color);
+}
+button {
+	color: var(--text-color);
 }
 .num {
 	width: 60px;
@@ -42,15 +56,16 @@ body {
 }
 button {
 	position: flex;
-	background: rgba(255, 255, 255, 0.5);
+	background: var(--color);
 	margin-left: -4px;
 	border: none;
 	transition: 0.1s;
 	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(5px);
 }
 button:hover {
-	background: rgba(159, 232, 250, 1);
-	filter: drop-shadow(0px 0px 10px rgba(159, 232, 250, 1));
+	background: var(--glow-color);
+	filter: drop-shadow(0px 0px 10px var(--glow-color));
 	transition: 0.2s;
 }
 #null {
@@ -67,11 +82,12 @@ button:hover {
 .screen {
 	border-radius: 10px 10px 0 0;
 	position: fixed;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: var(--color);
 	height: 70px;
 	width: 240px;
 	margin-top: 5px;
 	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(5px);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -84,13 +100,140 @@ button:hover {
 	font-size: 20px;
 	text-align: right; /* Выровняем текст по правому краю */
 	margin: 0;
+	color: var(--text-color);
 }
 
 .history {
 	font-family: 'Oswald', sans-serif;
 	font-size: 12px;
-	color: gray;
+	color: var(--history-color);
 	text-align: right; /* Выровняем текст по правому краю */
 	margin: 0;
 	margin-top: -5px; /* Подтягиваем ближе к верхнему тексту */
+}
+.theme-btn {
+	position: fixed;
+	height: 25px;
+	width: 25px;
+	margin: 5px;
+	display: flex;
+	justify-content: end;
+}
+.square {
+	position: relative;
+	margin: 0 10px;
+	width: 400px;
+	height: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.square span:nth-child(1) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 110%;
+	height: 110%;
+	border: 2px solid var(--span-color);
+	border-radius: 32% 58% 69% 43% / 48% 32% 59% 55%;
+	transition: 0.5s;
+	animation: anim1 6s linear infinite;
+	filter: brightness(1);
+}
+
+.square span:nth-child(2) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 105%;
+	height: 105%;
+	border: 2px solid var(--span-color);
+	border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+	transition: 0.5s;
+	animation: anim2 4s linear infinite;
+	filter: brightness(0.9);
+}
+
+.square span:nth-child(3) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 2px solid var(--span-color);
+	border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
+	transition: 0.5s;
+	animation: anim3 10s linear infinite;
+	filter: brightness(0.8);
+}
+.square span:nth-child(4) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 95%;
+	height: 95%;
+	margin: 2.5%;
+	background-color: var(--span-color);
+	border-radius: 25% 51% 73% 36% / 42% 59% 64% 83%;
+	transition: 0.5s;
+	animation: anim4 6s linear infinite;
+	opacity: 1;
+}
+
+@keyframes anim1 {
+	0% {
+		transform: rotate(360deg);
+		border-radius: 32% 58% 69% 43% / 48% 32% 59% 55%;
+	}
+	50% {
+		transform: rotate(180deg);
+		border-radius: 75% 76% 41% 28% / 45% 56% 22% 64%;
+	}
+	100% {
+		transform: rotate(0deg);
+		border-radius: 32% 58% 69% 43% / 48% 32% 59% 55%;
+	}
+}
+@keyframes anim2 {
+	0% {
+		transform: rotate(0deg);
+		border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+	}
+	50% {
+		transform: rotate(180deg);
+		border-radius: 70% 74% 49% 40% / 21% 56% 58% 79%;
+	}
+	100% {
+		transform: rotate(360deg);
+		border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+	}
+}
+@keyframes anim3 {
+	0% {
+		transform: rotate(360deg);
+		border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
+	}
+	50% {
+		transform: rotate(180deg);
+		border-radius: 70% 48% 59% 67% / 20% 22% 49% 61%;
+	}
+	100% {
+		transform: rotate(0deg);
+		border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
+	}
+}
+@keyframes anim4 {
+	0% {
+		transform: rotate(0deg);
+		border-radius: 25% 51% 73% 36% / 42% 59% 64% 83%;
+	}
+	50% {
+		transform: rotate(180deg);
+		border-radius: 64% 21% 49% 29% / 63% 35% 66% 62%;
+	}
+	100% {
+		transform: rotate(360deg);
+		border-radius: 25% 51% 73% 36% / 42% 59% 64% 83%;
+	}
 }
